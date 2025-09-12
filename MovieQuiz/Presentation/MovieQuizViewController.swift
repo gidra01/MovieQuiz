@@ -53,17 +53,15 @@ final class MovieQuizViewController: UIViewController {
         
     }
     @IBAction private func noButtonClicked(_ sender: UIButton) {
-        let currentQuestion = questions[currentQuestionIndex]
-        let givenAnswer = false
-            
-        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
+        handleAnswer(false)
     }
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
+        handleAnswer(true)
+    }
+    private func handleAnswer(_ givenAnswer: Bool) {
         let currentQuestion = questions[currentQuestionIndex]
-        let givenAnswer = true
-            
-        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
-        
+        let isCorrect = givenAnswer == currentQuestion.correctAnswer
+        showAnswerResult(isCorrect: isCorrect)
     }
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
         let questionStep = QuizStepViewModel(
